@@ -11,25 +11,37 @@ use fisa;
     
     -- Mysql, Oracle 공통
 	   SELECT empno, ename, sal FROM emp WHERE EXTRACT(MONTH FROM hiredate)=2 AND deptno=30;
-------------------------------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------------------------------
 -- Q2. 1981년에 입사한 사원들 중, 이름에 'A'가 포함되지 않은 사원의 이름과 입사일을, 입사일 기준 내림차순으로 출력하시오.
     
     -- Mysql
-	   SELECT ename, hiredate FROM emp WHERE Year(hiredate)=1981 AND ename NOT LIKE '%A%'; 
+	   SELECT ename, hiredate FROM emp WHERE ename NOT LIKE '%A%' and Year(hiredate)=1981 ORDER by hiredate desc; 
 	
     -- Oracle
        SELECT ename, hiredate FROM emp WHERE ename NOT LIKE ('%A%') AND TO_CHAR(hiredate, 'YYYY')='1981' ORDER BY hiredate desc; 
     
     -- Mysql, Oracle 공통
-	   SELECT ename, hiredate FROM emp WHERE EXTRACT(YEAR FROM hiredate) = 1981 AND ename NOT LIKE '%A%' ORDER BY hiredate DESC;
- ------------------------------------------------------------------------------------------------------
+	   SELECT ename, hiredate FROM emp WHERE ename NOT LIKE '%A%' and EXTRACT(YEAR FROM hiredate) = 1981 ORDER BY hiredate DESC;
+ -- ----------------------------------------------------------------------------------------------------
 -- Q3. 사원명에 A가 들어간 사원들 중에 입사일이 1981년이랑 1987년인 사람들만 검색
-	   SELECT ename, hiredate FROM emp  -- oracle
-	   WHERE ename LIKE ('%A%')
-	   AND hiredate BETWEEN to_date('1981','YYYY') AND to_date('1987','YYYY');  
-------------------------------------------------------------------------------------------------------
+
+    -- Mysql
+	   SELECT ename, hiredate FROM emp WHERE ename LIKE '%A%' AND Year(hiredate) BETWEEN 1981 AND 1987;
+	
+    -- Oracle
+       SELECT ename, hiredate FROM emp WHERE ename LIKE '%A%' AND hiredate BETWEEN to_date('19810101','YYYYMMDD') AND to_date('19871231','YYYYMMDD'); 
+    
+    -- Mysql, Oracle 공통
+	   SELECT ename, hiredate FROM emp WHERE ename LIKE '%A%' AND EXTRACT(YEAR FROM hiredate) BETWEEN 1981 AND 1987;
+ 
+-- ----------------------------------------------------------------------------------------------------
 -- Q4. 12월에 입사한 사람들 중에서 급여가 2000이상인 사람들 검색하여 사원이름과 입사일 급여를 출력하시오. 
-       SELECT ename, hiredate, sal
-       FROM emp
-       WHERE sal >= 2000 AND TO_CHAR(hiredate, 'MM') = 12;
-   
+    
+    -- Mysql
+       SELECT ename, hiredate, sal FROM emp WHERE sal >= 2000 AND Month(hiredate) = 12;
+    
+    -- Oracle
+       SELECT ename, hiredate, sal FROM emp WHERE sal >= 2000 AND TO_CHAR(hiredate,'MM') ='12';
+    
+    -- Mysql, Oracle 공통
+	   SELECT ename, hiredate, sal FROM emp WHERE sal >= 2000 AND EXTRACT(MONTH FROM hiredate)=12;   
