@@ -1,6 +1,5 @@
 markdown
-복사
-편집
+
 # 📘 SQL 문법 비교: MySQL vs Oracle
 
 > **문제:**  
@@ -10,7 +9,6 @@ markdown
 
 ## 🐬 MySQL 전용 문법
 
-```sql
 SELECT empno, ename, sal
 FROM emp
 WHERE MONTH(hiredate) = 2
@@ -20,9 +18,7 @@ MONTH() 함수는 MySQL에서 날짜의 "월"을 추출할 때 사용합니다.
 월이 정수 2로 비교되는 방식입니다.
 
 🍊 Oracle 전용 문법
-sql
-복사
-편집
+
 SELECT empno, ename, sal
 FROM emp
 WHERE TO_CHAR(hiredate, 'MM') = '02'
@@ -32,9 +28,7 @@ TO_CHAR(date, 'MM')은 Oracle에서 날짜의 "월"을 문자로 추출하는 �
 두 자리 문자열 '02'로 비교해야 정확히 2월만 필터링됩니다.
 
 🌐 공통 ANSI SQL 문법 (MySQL & Oracle 모두 가능)
-sql
-복사
-편집
+
 SELECT empno, ename, sal
 FROM emp
 WHERE EXTRACT(MONTH FROM hiredate) = 2
