@@ -22,11 +22,11 @@
 ## 🗂️ DBMS별 날짜 함수 정리
 
 ### ✅ MySQL
-
 ```sql
 YEAR(hiredate)     -- 연도 추출
 MONTH(hiredate)    -- 월 추출
 DAY(hiredate)      -- 일 추출
+```
 
 ### ✅ Oracle
 ```sql
@@ -38,9 +38,11 @@ TO_CHAR(hiredate, 'DD')    -- 일
 -- 문자열 → 날짜로 변환
 TO_DATE('20250708', 'YYYYMMDD')
 TO_DATE('2025-07-08', 'YYYY-MM-DD')
+```
 
 ### ✅ MySQL & Oracle 공통
 ```sql
 EXTRACT(YEAR FROM hiredate)
 EXTRACT(MONTH FROM hiredate)
 EXTRACT(DAY FROM hiredate)
+```
