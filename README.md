@@ -27,10 +27,9 @@
 YEAR(hiredate)     -- 연도 추출
 MONTH(hiredate)    -- 월 추출
 DAY(hiredate)      -- 일 추출
-✅ Oracle
-sql
-복사
-편집
+
+### ✅ Oracle
+```sql
 -- 날짜 → 문자열로 추출
 TO_CHAR(hiredate, 'YYYY')  -- 연도
 TO_CHAR(hiredate, 'MM')    -- 월
@@ -39,10 +38,9 @@ TO_CHAR(hiredate, 'DD')    -- 일
 -- 문자열 → 날짜로 변환
 TO_DATE('20250708', 'YYYYMMDD')
 TO_DATE('2025-07-08', 'YYYY-MM-DD')
-✅ MySQL & Oracle 공통
-sql
-복사
-편집
+
+### ✅ MySQL & Oracle 공통
+```sql
 EXTRACT(YEAR FROM hiredate)
 EXTRACT(MONTH FROM hiredate)
 EXTRACT(DAY FROM hiredate)
